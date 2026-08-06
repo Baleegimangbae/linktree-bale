@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balee Digital</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icon -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:"Poppins",sans-serif;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      background:#050505;
+      color:#fff;
+      position:relative;
+      cursor:none;
+    }
+
+    /* Background estetik */
+    body::before{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,0,60,.25), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(255,40,40,.18), transparent 25%),
+        linear-gradient(135deg,#000000,#0a0a0a,#140000);
+      animation:bgMove 10s ease-in-out infinite alternate;
+      z-index:-3;
+    }
+
+    @keyframes bgMove{
+      from{transform:scale(1) rotate(0deg);}
+      to{transform:scale(1.08) rotate(2deg);}
+    }
+
+    /* Garis neon */
+    .lines{
+      position:absolute;
+      inset:0;
+      background:
+        repeating-linear-gradient(
+          115deg,
+          transparent 0px,
+          transparent 26px,
+          rgba(255,0,50,.08) 27px,
+          transparent 28px
+        );
+      opacity:.35;
+      z-index:-2;
+    }
+
+    /* Partikel merah */
+    .particles span{
+      position:absolute;
+      width:4px;
+      height:4px;
+      background:#ff3b3b;
+      border-radius:50%;
+      box-shadow:0 0 12px #ff3b3b;
+      animation:float 8s linear infinite;
+    }
+
+    .particles span:nth-child(1){top:12%;left:18%;animation-duration:7s;}
+    .particles span:nth-child(2){top:22%;left:82%;animation-duration:9s;}
+    .particles span:nth-child(3){top:74%;left:16%;animation-duration:6s;}
+    .particles span:nth-child(4){top:82%;left:76%;animation-duration:10s;}
+    .particles span:nth-child(5){top:50%;left:50%;animation-duration:8s;}
+
+    @keyframes float{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-18px);}
+    }
+
+    .container{
+      width:100%;
+      max-width:420px;
+      padding:22px;
+      z-index:2;
+    }
+
+    .card{
+      background:rgba(10,10,10,.55);
+      border:1px solid rgba(255,70,70,.22);
+      border-radius:34px;
+      padding:34px 24px;
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:
+        0 0 22px rgba(255,0,60,.18),
+        0 0 48px rgba(255,0,60,.10),
+        inset 0 0 18px rgba(255,255,255,.03);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:34px;
+      padding:1px;
+      background:linear-gradient(135deg,
+        rgba(255,255,255,.15),
+        rgba(255,0,60,.45),
+        rgba(255,255,255,.08));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+              mask-composite:exclude;
+      pointer-events:none;
+    }
+
+    .profile{
+      text-align:center;
+      margin-bottom:26px;
+    }
+
+    .logo{
+      width:120px;
+      height:120px;
+      margin:0 auto 18px;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:54px;
+      font-weight:800;
+      color:#fff;
+      background:radial-gradient(circle at 30% 30%, #ff5252, #b30021 70%);
+      box-shadow:
+        0 0 18px #ff1744,
+        0 0 36px rgba(255,23,68,.65),
+        inset 0 0 14px rgba(255,255,255,.18);
+      position:relative;
+    }
+
+    .logo::after{
+      content:"";
+      position:absolute;
+      inset:-8px;
+      border-radius:50%;
+      border:2px solid rgba(255,60,60,.35);
+      box-shadow:0 0 22px rgba(255,60,60,.55);
+    }
+
+    h1{
+      font-size:2.1rem;
+      font-weight:800;
+      letter-spacing:3px;
+      margin-bottom:6px;
+      text-shadow:0 0 12px rgba(255,60,60,.6);
+    }
+
+    .subtitle{
+      color:#ff5b5b;
+      font-size:.92rem;
+      font-weight:600;
+      letter-spacing:2px;
+      margin-bottom:14px;
+    }
+
+    .desc{
+      color:#d0d0d0;
+      font-size:.93rem;
+      line-height:1.6;
+      max-width:320px;
+      margin:0 auto;
+    }
+
+    .divider{
+      width:86px;
+      height:3px;
+      margin:24px auto 6px;
+      border-radius:999px;
+      background:linear-gradient(90deg, transparent, #ff3b3b, transparent);
+      box-shadow:0 0 12px rgba(255,59,59,.8);
+    }
+
+    .links{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      margin-top:10px;
+    }
+
+    .link{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:18px 20px;
+      border-radius:22px;
+      text-decoration:none;
+      color:#fff;
+      background:rgba(15,15,15,.78);
+      border:1px solid rgba(255,70,70,.24);
+      overflow:hidden;
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      box-shadow:
+        0 0 14px rgba(255,0,60,.12),
+        inset 0 0 10px rgba(255,255,255,.03);
+    }
+
+    .link::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,
+        transparent,
+        rgba(255,255,255,.10),
+        transparent);
+      transform:translateX(-100%);
+      transition:transform .5s ease;
+    }
+
+    .link:hover{
+      transform:translateY(-4px) scale(1.02);
+      border-color:rgba(255,90,90,.55);
+      box-shadow:
+        0 0 22px rgba(255,0,60,.28),
+        0 0 42px rgba(255,0,60,.18);
+    }
+
+    .link:hover::before{
+      transform:translateX(100%);
+    }
+
+    .icon{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:24px;
+      background:linear-gradient(135deg,#ff304f,#b00020);
+      box-shadow:0 0 16px rgba(255,48,79,.5);
+      flex-shrink:0;
+    }
+
+    .link-content{
+      flex:1;
+    }
+
+    .link-content h3{
+      font-size:1rem;
+      margin-bottom:4px;
+      font-weight:600;
+    }
+
+    .link-content p{
+      font-size:.84rem;
+      color:#cfcfcf;
+    }
+
+    .arrow{
+      color:#ff6b6b;
+      font-size:18px;
+      transition:transform .25s ease;
+    }
+
+    .link:hover .arrow{
+      transform:translateX(4px);
+    }
+
+    .footer{
+      text-align:center;
+      margin-top:26px;
+      color:#9b9b9b;
+      font-size:.78rem;
+      line-height:1.6;
+    }
+
+    .footer .heart{
+      color:#ff4d6d;
+      text-shadow:0 0 8px rgba(255,77,109,.8);
+    }
+
+    /* Kursor neon */
+    .cursor{
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      position:fixed;
+      top:0;
+      left:0;
+      pointer-events:none;
+      background:#ff3b3b;
+      box-shadow:
+        0 0 10px #ff3b3b,
+        0 0 22px rgba(255,59,59,.95),
+        0 0 42px rgba(255,0,60,.7);
+      transform:translate(-50%,-50%);
+      z-index:9999;
+      transition:transform .06s linear;
+    }
+
+    .cursor-trail{
+      width:42px;
+      height:42px;
+      border:2px solid rgba(255,59,59,.45);
+      border-radius:50%;
+      position:fixed;
+      top:0;
+      left:0;
+      pointer-events:none;
+      transform:translate(-50%,-50%);
+      z-index:9998;
+      transition:
+        top .14s ease,
+        left .14s ease,
+        transform .14s ease;
+      box-shadow:0 0 18px rgba(255,59,59,.28);
+    }
+
+    @media (max-width:480px){
+      .card{
+        padding:28px 20px;
+        border-radius:28px;
+      }
+
+      h1{
+        font-size:1.8rem;
+      }
+
+      .logo{
+        width:104px;
+        height:104px;
+        font-size:48px;
+      }
+
+      .link{
+        padding:16px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Garis background -->
+  <div class="lines"></div>
+
+  <!-- Partikel -->
+  <div class="particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Cursor neon -->
+  <div class="cursor"></div>
+  <div class="cursor-trail"></div>
+
+  <div class="container">
+    <div class="card">
+
+      <div class="profile">
+        <div class="logo">B</div>
+
+        <h1>BALEE</h1>
+
+        <div class="subtitle">
+          DIGITAL SERVICE
+        </div>
+
+        <p class="desc">
+          Jasa digital, preview website, dan media sosial
+          dengan tampilan modern dan estetik.
+        </p>
+
+        <div class="divider"></div>
+      </div>
+
+      <div class="links">
+
+        <a class="link"
+           href="https://instagram.com/hayuniqbal_"
+           target="_blank">
+
+          <div class="icon">
+            <i class="fab fa-instagram"></i>
+          </div>
+
+          <div class="link-content">
+            <h3>Instagram</h3>
+            <p>Follow akun Instagram saya</p>
+          </div>
+
+          <i class="fas fa-chevron-right arrow"></i>
+        </a>
+
+        <a class="link"
+           href="https://discord.gg/fwjvrkJy8K"
+           target="_blank">
+
+          <div class="icon">
+            <i class="fab fa-discord"></i>
+          </div>
+
+          <div class="link-content">
+            <h3>Discord</h3>
+            <p>Bergabung ke server Discord</p>
+          </div>
+
+          <i class="fas fa-chevron-right arrow"></i>
+        </a>
+
+        <a class="link"
+           href="https://baleegimangbae.github.io/balefolio/"
+           target="_blank">
+
+          <div class="icon">
+            <i class="fas fa-globe"></i>
+          </div>
+
+          <div class="link-content">
+            <h3>Preview Website</h3>
+            <p>Lihat preview website saya</p>
+          </div>
+
+          <i class="fas fa-chevron-right arrow"></i>
+        </a>
+
+      </div>
+
+      <div class="footer">
+        © 2026 Balee Digital<br>
+        Made with <span class="heart">❤</span> and Code
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const cursor = document.querySelector('.cursor');
+    const trail  = document.querySelector('.cursor-trail');
+
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+
+      trail.style.left = e.clientX + 'px';
+      trail.style.top  = e.clientY + 'px';
+    });
+
+    const hoverTargets = document.querySelectorAll('a, button');
+
+    hoverTargets.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        trail.style.transform = 'translate(-50%, -50%) scale(1.5)';
+      });
+
+      el.addEventListener('mouseleave', () => {
+        trail.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+    });
+  </script>
+
+</body>
+</html>
